@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <h1>Start the quiz</h1>
+
+    <!-- Form to select the category -->
+    <form action="/start_quiz" method="POST">
+      <label for="category">Select Category:</label>
+      <select name="category" id="category" required>
+        {% for category in categories %}
+        <option value="{{ category['id'] }}">{{ category['name'] }}</option>
+        {% endfor %}
+      </select>
+
+      <br /><br />
+
+      <label for="difficult">Select difficulty:</label>
+      <select name="difficulty" id="difficulty" required>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <br /><br />
+
+      <button type="submit">Start Quiz</button>
+    </form>
+  </body>
+</html>
