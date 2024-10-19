@@ -8,31 +8,107 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="/static/quiz.css" />
   </head>
   <body>
-    <h1>Start the quiz</h1>
+    <div class="container mt-5">
+      <div class="heading">
+        <h1>Quiz</h1>
+        <h2>Test Yourself!</h2>
+      </div>
+      <div class="centered-container">
+        <div class="container-box">
+          <h3 class="STQ_text">Start the quiz</h3>
+          <!-- Form to select the category -->
+          <form action="/start_quiz" method="POST">
+            <div class="input-area">
+              <div class="form-group">
+                <label for="username">Enter Your Name:</label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  class="form-control"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
 
-    <!-- Form to select the category -->
-    <form action="/start_quiz" method="POST">
-      <label for="category">Select Category:</label>
-      <select name="category" id="category" required>
-        {% for category in categories %}
-        <option value="{{ category['id'] }}">{{ category['name'] }}</option>
-        {% endfor %}
-      </select>
+              <!-- Age Input -->
 
-      <br /><br />
+              <div class="form-group">
+                <label for="age">Enter Your Age:</label>
+                <input
+                  type="number"
+                  name="age"
+                  id="age"
+                  class="form-control"
+                  placeholder="Enter your age"
+                  min="1"
+                  max="120"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="category">Select Category:</label>
+              <select
+                name="category"
+                id="category"
+                class="form-control"
+                required
+              >
+                {% for category in categories %}
+                <option value="{{ category['id'] }}">
+                  {{ category['name'] }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
 
-      <label for="difficult">Select difficulty:</label>
-      <select name="difficulty" id="difficulty" required>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
+            <div class="form-group">
+              <label>Select difficulty:</label><br />
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Difficulty levels"
+              >
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="selectDifficulty('easy')"
+                >
+                  Easy
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  onclick="selectDifficulty('medium')"
+                >
+                  Medium
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  onclick="selectDifficulty('hard')"
+                >
+                  Hard
+                </button>
+              </div>
+            </div>
 
-      <br /><br />
+            <!-- Hidden input to store the selected difficulty -->
+            <input type="hidden" name="difficulty" id="difficulty" required />
 
-      <button type="submit">Start Quiz</button>
-    </form>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success start">
+                Start Quiz
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/static/quiz.js"></script>
   </body>
 </html>

@@ -1,0 +1,172 @@
+/* Body Styling */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Use min-height instead of height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Arial", sans-serif;
+  overflow: hidden; /* Prevent scrolling */
+
+  background-image: url("doodle .jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background: linear-gradient(to bottom, #6dd5fa, #2980b9);
+}
+
+/* Headings Styling */
+h1,
+h2 {
+  color: #0000ff;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+}
+
+/* Secondary Heading */
+h2 {
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 2.5rem; /* Reduced font size for better scaling */
+  text-align: center;
+  margin: 0.5rem; /* Removes default margin */
+}
+
+/* Centered container */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 150px); /* Adjust to center the box */
+  width: 100%;
+  margin: 0;
+}
+
+/* Black Box Styling */
+.container-box {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Semi-transparent for a clean contrast */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-group {
+  display: block;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Label Styling */
+label {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px; /* Padding for comfort */
+  font-size: 1.2rem; /* Larger font size for readability */
+  border-radius: 5px; /* Rounded corners for consistency */
+  border: none; /* No border for a clean look */
+  margin-bottom: 15px; /* Spacing between inputs */
+  width: 100%; /* Full width to match the form layout */
+  text-align: center;
+}
+
+/* Dropdown Styling */
+select {
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  width: 100%; /* Full width for better form layout */
+}
+
+/* Button Styling */
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Easy Button */
+button.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+/* Medium Button */
+button.btn-warning:hover {
+  background-color: #d4ac0d;
+}
+
+/* Hard Button */
+button.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+/* Start Quiz Button */
+button.start {
+  background-color: #2ecc71;
+  color: white;
+  margin-top: 20px;
+}
+
+button.start:hover {
+  background-color: #27ae60;
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+  h1,
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  .container-box {
+    padding: 20px;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}
