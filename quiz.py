@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import random, html, requests
 from colorama import Fore, Style, init
+from database import create_connection, insert_quiz_result 
 
 
 app = Flask(__name__)
@@ -29,7 +30,6 @@ def fetch_question(category_id,difficulty,number):
     response = requests.get(question_url)
     if response.status_code ==200:
         data =response.json()
-        print(data)
         return data
     else:
         print("No questions found")
@@ -39,7 +39,7 @@ def fetch_question(category_id,difficulty,number):
 @app.route('/')  
 def quiz():
     categories = get_categories()
-    print(categories)
+    
     return render_template('quiz.html',categories=categories)
     
 @app.route('/start_quiz',methods=['POST'])
@@ -47,7 +47,9 @@ def start_quiz():
     session.clear()
     category_id = request.form.get('category')
     difficulty= request.form.get("difficulty").lower()
-    number = 10
+    username = request.form.get('username')
+    age = request.form.get('age')
+    number = 5
     
     questions= fetch_question(category_id,difficulty,number)
    
@@ -56,6 +58,8 @@ def start_quiz():
         session['question'] = questions['results']
         session['current_question']=0 #initialize current question index
         session['score']=0
+        session['username']= username
+        session['age']= age
         
         return redirect(url_for('show_question'))
     else:
@@ -121,8 +125,18 @@ def show_question():
 def quiz_result():
     score = session.get('score', 0)
     questions = session.get('question', [])
+    username = session.get('username')
+    age = session.get('age')
+    questions_count = len(questions)
     
-    return f"Your score is {score} out of {len(questions)}"
+    insert_quiz_result(username, age,score,questions_count)
+    print(username,age, score,questions_count)
+    
+    if score<=5:
+        Text="Better Luck Next Time"
+    else:
+        Text="Congratulations"
+    return render_template('quiz_result.html', score=score, Text=Text, total_questions=len(questions), username=username, age=age)
 
     
 if __name__ == "__main__":

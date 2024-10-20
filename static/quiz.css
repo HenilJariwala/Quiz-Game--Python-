@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@642&family=Londrina+Sketch&family=Playwrite+BE+VLG:wght@100..400&family=Rubik+Doodle+Shadow&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Londrina+Sketch&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Lines&display=swap");
+
 /* Body Styling */
 body {
   margin: 0;
@@ -6,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Arial", sans-serif;
+  font-family: "Comfortaa", sans-serif;
   overflow: hidden; /* Prevent scrolling */
 
   background-image: url("doodle .jpg");
@@ -14,7 +18,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  background: linear-gradient(to bottom, #6dd5fa, #2980b9);
+  background: linear-gradient(to bottom, #0098cf, #06436b);
 }
 
 /* Headings Styling */
@@ -22,22 +26,38 @@ h1,
 h2 {
   color: #0000ff;
   text-transform: uppercase;
+
   font-weight: 900;
   font-size: 3rem;
   text-align: center;
   margin: 0;
 }
 
+h6 {
+  font-family: "Rubik Lines", system-ui;
+  font-weight: 900;
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+}
+h1 {
+  font-family: "Rubik Doodle Shadow", system-ui;
+  font-size: 5rem;
+}
 /* Secondary Heading */
 h2 {
   font-weight: 400;
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-family: "Comfortaa", sans-serif;
+  text-align: center;
 }
 
-h3 {
+h3,
+h5 {
   color: white;
   text-transform: uppercase;
+  font-family: "Comfortaa", sans-serif;
   font-weight: 900;
   font-size: 2.5rem; /* Reduced font size for better scaling */
   text-align: center;
@@ -151,8 +171,40 @@ button.start {
   margin-top: 20px;
 }
 
+/* Start quiz hover  */
 button.start:hover {
   background-color: #27ae60;
+}
+
+/* Questions option button */
+.answer-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  gap: 0.5rem;
+}
+
+.answer-options form {
+  gap: 0.5rem; /* Each button will take 24% width of the container */
+}
+
+@keyframes popEffect {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pop-animation {
+  animation: popEffect 0.6s ease-out;
 }
 
 /* Media Query for Responsive Design */

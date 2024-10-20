@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Result</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="/static/quiz.css" />
+  </head>
+  <body onload="celebrate()">
+    <div class="container mt-5 text-center">
+      <h1 class="pop-animation">Quiz Completed!</h1>
+      <h3 class="pop-animation">{{Text}}, {{ username }}!</h3>
+      <h4 class="pop-animation">
+        You scored {{ score }} out of {{ total_questions }} questions.
+      </h4>
+      <div class="mt-4">
+        <a href="/" class="btn btn-primary">Start Again</a>
+      </div>
+    </div>
+    <script src="/static/quiz.js"></script>
+  </body>
+</html>
