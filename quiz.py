@@ -49,7 +49,7 @@ def start_quiz():
     difficulty= request.form.get("difficulty").lower()
     username = request.form.get('username')
     age = request.form.get('age')
-    number = 5
+    number = 10
     
     questions= fetch_question(category_id,difficulty,number)
    
@@ -70,10 +70,7 @@ def start_quiz():
 def show_question():
     questions = session.get('question', [])
     current_index = session.get('question_index', 0)
-    
-    print(f"Session: {session}")
-    print(f"Questions in session: {questions}")  # Check if questions are stored in session
-    print(f"Current Index: {current_index}")  # Check current question index
+
     
     if request.method == 'POST':
         user_answer = request.form.get('answer')
@@ -140,7 +137,7 @@ def quiz_result():
 
     
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(debug=True)
 
 
 

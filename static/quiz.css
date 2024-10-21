@@ -221,4 +221,12 @@ button.start:hover {
   button {
     font-size: 1rem;
   }
+
+  h5 {
+    font-size: 1.5rem;
+  }
+
+  .answer-options {
+    width: auto;
+  }
 }
