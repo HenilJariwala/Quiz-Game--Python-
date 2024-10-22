@@ -230,3 +230,48 @@ button.start:hover {
     width: auto;
   }
 }
+
+@media (max-width: 500px) {
+  label {
+    font-size: 1.1rem;
+  }
+
+  h6 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  body {
+    height: 100vh;
+  }
+
+  h6 {
+    margin-bottom: 25px;
+  }
+
+  .container-box {
+    height: auto;
+  }
+  .input-area {
+    margin: 0;
+  }
+
+  .form-group div {
+    margin: 0rem;
+  }
+
+  .form-group {
+    margin: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  label {
+    font-size: 0.8rem;
+  }
+}

@@ -1,6 +1,6 @@
 import mysql.connector
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv #type: ignore
 
 # Load environment variables from .env file
 load_dotenv()
@@ -24,7 +24,7 @@ def insert_quiz_result(username, age, score,question_count):
     connection = create_connection()
     cursor = connection.cursor()
 
-    sql_query = "INSERT INTO users (username, age, score, question_count) VALUES (%s, %s, %s,%s)"
+    sql_query = "INSERT INTO users (username, age, score, question_count) VALUES (%s, %s, %s,)"
     data = (username, age, score, question_count)
 
     try:
