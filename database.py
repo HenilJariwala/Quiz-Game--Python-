@@ -1,45 +1,46 @@
-import mysql.connector
 import os
-from dotenv import load_dotenv #type: ignore
+from dotenv import load_dotenv  # type: ignore
+from pymongo import MongoClient
+from datetime import datetime
+from urllib.parse import quote_plus
 
 # Load environment variables from .env file
 load_dotenv()
-
 def create_connection():
     try:
-        # Create a connection to the MySQL database
-        connection = mysql.connector.connect(
-            host=os.getenv('MYSQL_HOST'),
-            user=os.getenv('MYSQL_USER'),
-            password=os.getenv('MYSQL_PASSWORD'),
-            database=os.getenv('MYSQL_DB')
-        )
+        # URL-encode username and password
+        username = quote_plus(os.getenv('MONGO_USER'))
+        password = quote_plus(os.getenv('MONGO_PASSWORD'))
+        cluster_url = os.getenv('MONGO_CLUSTER_URL')  # Add cluster URL to .env
+        db_name = os.getenv('MONGO_DB')  # Add database name to .env
+
+        # Create a connection to the MongoDB database
+        mongo_uri = f"mongodb+srv://{username}:{password}@{cluster_url}/{db_name}?retryWrites=true&w=majority"
+        client = MongoClient(mongo_uri)
         print("Connection successful!")
-        return connection
-    except mysql.connector.Error as err:
+        return client
+    except Exception as err:
         print(f"Error: {err}")
         return None
 
-def insert_quiz_result(username, age, score,question_count):
-    connection = create_connection()
-    cursor = connection.cursor()
+def insert_quiz_result(username, age, score, question_count):
+    client = create_connection()
+    if client:
+        db = client['quiz_game']  # Your database name
+        collection = db['users']  # Your collection name
 
-    sql_query = "INSERT INTO users (username, age, score, question_count) VALUES (%s, %s, %s,)"
-    data = (username, age, score, question_count)
+        user_data = {
+            "username": username,
+            "age": age,
+            "score": score,
+            "question_count": question_count,
+            "quiz_date": datetime.now()  # Set the current date and time
+        }
 
-    try:
-        cursor.execute(sql_query, data)
-        connection.commit()
-        print("Quiz result inserted successfully.")
-    except Exception as e:
-        print(f"Error inserting data: {e}")
-    finally:
-        cursor.close()
-        connection.close()
-        
-# Example usage
-if __name__ == "__main__":
-    conn = create_connection()
-    if conn:
-        # Do something with the connection
-        conn.close()  # Don't forget to close the connection when done!
+        try:
+            collection.insert_one(user_data)
+            print("Quiz result inserted successfully.")
+        except Exception as e:
+            print(f"Error inserting data: {e}")
+        finally:
+            client.close()  # Close the connection when done
