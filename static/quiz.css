@@ -274,4 +274,9 @@ button.start:hover {
   label {
     font-size: 0.8rem;
   }
+
+  .answer-options {
+    display: flex;
+    flex-direction: column;
+  }
 }
