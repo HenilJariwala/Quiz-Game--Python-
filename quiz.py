@@ -101,4 +101,4 @@ def quiz_result():
     return render_template('quiz_result.html', score=score, Text=text, total_questions=len(questions), username=username, age=age)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True)

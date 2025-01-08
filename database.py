@@ -26,15 +26,15 @@ def create_connection():
 def insert_quiz_result(username, age, score, question_count):
     client = create_connection()
     if client:
-        db = client['quiz_game']  # Your database name
-        collection = db['users']  # Your collection name
+        db = client['quiz_game']  
+        collection = db['users']  
 
         user_data = {
             "username": username,
             "age": age,
             "score": score,
             "question_count": question_count,
-            "quiz_date": datetime.now()  # Set the current date and time
+            "quiz_date": datetime.now()  
         }
 
         try:
